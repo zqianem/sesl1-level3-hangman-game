@@ -1,7 +1,7 @@
 # hangman
 
 A word guessing game:
-[https://en.wikipedia.org/wiki/Hangman_(game)](https://en.wikipedia.org/wiki/Hangman_(game)
+[https://en.wikipedia.org/wiki/Hangman\_(game)](<https://en.wikipedia.org/wiki/Hangman_(game)>)
 
 ## Developing
 
@@ -12,7 +12,7 @@ git clone https://github.com/zqianem/sesl1-level3-hangman-game.git
 npm install
 ```
 
-Get the project URL and service role API key from [https://app.supabase.com/project/ejyhdjdsexqnttkydvve/settings/api](https://app.supabase.com/project/ejyhdjdsexqnttkydvve/settings/api) and add them to `.env.example`, then rename the file to `.env`:
+Get the project URL and service role API key from [Supabase](https://app.supabase.com/project/ejyhdjdsexqnttkydvve/settings/api) and add them to `.env.example`, then rename the file to `.env`:
 
 ```bash
 mv .env.example .env
