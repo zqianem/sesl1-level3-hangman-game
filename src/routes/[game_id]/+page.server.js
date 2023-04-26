@@ -24,12 +24,11 @@ export const actions = {
 
     letters_guessed = [...letters_guessed, guess];
 
-    win =
-      create_board({ word, letters_guessed }).join('') === word
-        ? true
-        : lives_remaining === 0
-        ? false
-        : null;
+    win = all_letters_guessed(word, letters_guessed)
+      ? true
+      : lives_remaining === 0
+      ? false
+      : null;
 
     const { error } = await supabase
       .from('hangman_games')
@@ -53,9 +52,13 @@ async function get_game_from_db(supabase, game_id) {
   return data;
 }
 
+function all_letters_guessed(word, letters_guessed) {
+  return create_board({ word, letters_guessed }).join('') === word;
+}
+
 function create_board({ word, letters_guessed }) {
   return [...word].map((char) =>
-    char.match(/\p{P}|\p{White_Space}/gu) || letters_guessed.includes(char)
+    letters_guessed.includes(char) || char.match(/\p{P}|\p{White_Space}/gu)
       ? char
       : '_',
   );
