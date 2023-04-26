@@ -1,5 +1,5 @@
 import { error as sk_error } from '@sveltejs/kit';
-import { create_board, game_won, game_lost } from '$lib';
+import { create_board, letter_in_word, game_won, game_lost } from '$lib';
 
 export async function load({ params: { game_id }, locals: { supabase } }) {
   const game = await get_game_from_db(supabase, game_id);
@@ -21,7 +21,7 @@ export const actions = {
     const form_data = await request.formData();
     const guess = form_data.get('guess');
 
-    lives_remaining = word.includes(guess)
+    lives_remaining = letter_in_word(guess, word)
       ? lives_remaining
       : lives_remaining - 1;
 

@@ -15,6 +15,10 @@ export function create_board(word, letters_guessed) {
   );
 }
 
+export function letter_in_word(letter, word) {
+  return [...word].some((char) => letter_matches_char(letter, char));
+}
+
 export function game_won(word, letters_guessed, lives_remaining) {
   return (
     create_board(word, letters_guessed).join('') === word && lives_remaining > 0
