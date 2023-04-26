@@ -1,9 +1,9 @@
 import { error as sk_error, redirect } from '@sveltejs/kit';
-import { americanAll } from 'wordlist-js';
+import { americanAll, englishAll } from 'wordlist-js';
 
 export const actions = {
   default: async ({ locals: { supabase } }) => {
-    const word = americanAll[Math.floor(Math.random() * americanAll.length)];
+    const word = random_word();
     const { data, error } = await supabase
       .from('hangman_games')
       .insert({ word })
@@ -15,3 +15,8 @@ export const actions = {
     throw redirect(303, data.id);
   },
 };
+
+function random_word() {
+  const words = [...englishAll, ...americanAll];
+  return words[Math.floor(Math.random() * words.length)];
+}
