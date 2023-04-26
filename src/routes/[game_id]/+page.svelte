@@ -23,10 +23,15 @@
     </label>
     <button type="submit">Guess</button>
   </form>
-{:else if win}
-  You won!
 {:else}
-  You lost. The word was: <span>{revealed_word}</span>
+  {#if win}
+    You won!
+  {:else}
+    You lost. The word was: <span>{revealed_word}</span>
+  {/if}
+  <form method="POST" action="/">
+    <button type="submit">New game</button>
+  </form>
 {/if}
 
 <style>
@@ -37,5 +42,9 @@
   span {
     font-family: monospace;
     font-size: 1.5em;
+  }
+
+  button {
+    margin-top: 1em;
   }
 </style>
