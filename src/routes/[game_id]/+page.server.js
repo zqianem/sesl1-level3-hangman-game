@@ -1,10 +1,11 @@
 import { error as sk_error } from '@sveltejs/kit';
+import { create_board, game_won, game_lost } from '$lib';
 
 export async function load({ params: { game_id }, locals: { supabase } }) {
   const game = await get_game_from_db(supabase, game_id);
-  const board = create_board(game);
   const { word, lives_remaining, letters_guessed, win } = game;
 
+  const board = create_board(word, letters_guessed);
   const revealed_word = win === null ? null : word;
 
   return { board, lives_remaining, letters_guessed, win, revealed_word };
@@ -26,12 +27,11 @@ export const actions = {
 
     letters_guessed = [...letters_guessed, guess];
 
-    win =
-      all_letters_guessed(word, letters_guessed) && lives_remaining > 0
-        ? true
-        : lives_remaining <= 0
-        ? false
-        : null;
+    win = game_won(word, letters_guessed, lives_remaining)
+      ? true
+      : game_lost(lives_remaining)
+      ? false
+      : null;
 
     const { error } = await supabase
       .from('hangman_games')
@@ -53,18 +53,4 @@ async function get_game_from_db(supabase, game_id) {
   if (!data) throw sk_error(404, 'Game not found');
 
   return data;
-}
-
-function all_letters_guessed(word, letters_guessed) {
-  return create_board({ word, letters_guessed }).join('') === word;
-}
-
-function create_board({ word, letters_guessed }) {
-  return [...word].map((letter) =>
-    letters_guessed.some(
-      (l) => l === letter || l === letter.normalize('NFD')[0],
-    ) || letter.match(/\p{P}|\p{White_Space}/gu)
-      ? letter
-      : '_',
-  );
 }

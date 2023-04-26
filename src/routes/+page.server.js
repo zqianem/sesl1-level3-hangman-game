@@ -1,5 +1,5 @@
 import { error as sk_error, redirect } from '@sveltejs/kit';
-import { americanAll, englishAll } from 'wordlist-js';
+import { random_word } from '$lib';
 
 export const actions = {
   default: async ({ locals: { supabase } }) => {
@@ -15,8 +15,3 @@ export const actions = {
     throw redirect(303, data.id);
   },
 };
-
-function random_word() {
-  const words = [...englishAll, ...americanAll].map((w) => w.normalize('NFC'));
-  return words[Math.floor(Math.random() * words.length)];
-}
