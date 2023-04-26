@@ -10,8 +10,8 @@
 </pre>
 
 <form method="POST">
-  <label
-    >Pick a letter:
+  <label>
+    Pick a letter:
     <select name="guess">
       {#each [...'abcdefghijklmnopqrstuvwxyz'] as letter}
         <option value={letter} disabled={letters_guessed.includes(letter)}>
