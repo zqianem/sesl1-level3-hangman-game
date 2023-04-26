@@ -12,10 +12,10 @@ git clone https://github.com/zqianem/sesl1-level3-hangman-game.git
 npm install
 ```
 
-Get the project URL and service role API key from [Supabase](https://app.supabase.com/project/ejyhdjdsexqnttkydvve/settings/api) and add them to `.env.example`, then rename the file to `.env`:
+Copy `.env.example` to `.env`, then get the project URL and service role API key from [Supabase](https://app.supabase.com/project/ejyhdjdsexqnttkydvve/settings/api) and add them to `.env`:
 
 ```bash
-mv .env.example .env
+cp .env.example .env
 ```
 
 Start a development server:
