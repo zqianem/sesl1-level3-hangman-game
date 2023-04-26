@@ -9,6 +9,20 @@
 {#each board as letter}{letter}{' '}{/each}
 </pre>
 
+<form method="POST">
+  <label
+    >Pick a letter:
+    <select name="guess">
+      {#each [...'abcdefghijklmnopqrstuvwxyz'] as letter}
+        <option value={letter} disabled={letters_guessed.includes(letter)}>
+          {letter}
+        </option>
+      {/each}
+    </select>
+  </label>
+  <button type="submit">Guess</button>
+</form>
+
 <style>
   pre {
     font-size: 3em;
