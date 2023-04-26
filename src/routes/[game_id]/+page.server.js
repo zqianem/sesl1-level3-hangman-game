@@ -3,9 +3,11 @@ import { error as sk_error } from '@sveltejs/kit';
 export async function load({ params: { game_id }, locals: { supabase } }) {
   const game = await get_game_from_db(supabase, game_id);
   const board = create_board(game);
-  const { lives_remaining, letters_guessed } = game;
+  const { word, lives_remaining, letters_guessed, win } = game;
 
-  return { board, lives_remaining, letters_guessed };
+  const revealed_word = win === null ? null : word;
+
+  return { board, lives_remaining, letters_guessed, win, revealed_word };
 }
 
 export const actions = {
