@@ -1,9 +1,9 @@
 <script>
   export let data;
-  $: ({ board, guesses_remaining, letters_guessed } = data);
+  $: ({ board, lives_remaining, letters_guessed } = data);
 </script>
 
-<p>Guesses remaining: {guesses_remaining}</p>
+<p>Lives remaining: {lives_remaining}</p>
 <p>Letters guessed: {letters_guessed.join(', ')}</p>
 <pre>
 {#each board as letter}{letter}{' '}{/each}
