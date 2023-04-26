@@ -1,3 +1,3 @@
 <form method="POST">
-  <button type="submit">New game</button>
+  <button>New game</button>
 </form>

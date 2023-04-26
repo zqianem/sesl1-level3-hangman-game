@@ -21,7 +21,7 @@
         {/each}
       </select>
     </label>
-    <button type="submit">Guess</button>
+    <button>Guess</button>
   </form>
 {:else}
   {#if win}
@@ -30,7 +30,7 @@
     You lost. The word was: <span>{revealed_word}</span>
   {/if}
   <form method="POST" action="/">
-    <button type="submit">New game</button>
+    <button>New game</button>
   </form>
 {/if}
 
