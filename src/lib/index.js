@@ -15,6 +15,10 @@ export function create_board(word, letters_guessed) {
   );
 }
 
+export function letters_not_on_board(letters_guessed, board) {
+  return letters_guessed.filter((letter) => !letter_in_word(letter, board));
+}
+
 export function letter_in_word(letter, word) {
   return [...word].some((char) => letter_matches_char(letter, char));
 }

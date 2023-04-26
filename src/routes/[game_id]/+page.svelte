@@ -1,13 +1,20 @@
 <script>
+  import { letter_in_word } from '$lib';
+
   export let data;
   $: ({ board, lives_remaining, letters_guessed, win, revealed_word } = data);
+  $: letters_not_in_word = letters_guessed.filter((letter) => {
+    return !letter_in_word(letter, board);
+  });
 </script>
 
 <p>Lives remaining: {lives_remaining}</p>
-<p>Letters guessed: {letters_guessed.join(', ')}</p>
+
 <pre>
 {#each board as letter}{letter}{' '}{/each}
 </pre>
+
+<p>Letters not in word: {letters_not_in_word.join(', ')}</p>
 
 {#if win === null}
   <form method="POST">
