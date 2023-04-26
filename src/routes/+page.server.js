@@ -17,6 +17,6 @@ export const actions = {
 };
 
 function random_word() {
-  const words = [...englishAll, ...americanAll];
+  const words = [...englishAll, ...americanAll].map((w) => w.normalize('NFC'));
   return words[Math.floor(Math.random() * words.length)];
 }

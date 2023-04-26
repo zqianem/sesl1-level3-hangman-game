@@ -60,9 +60,11 @@ function all_letters_guessed(word, letters_guessed) {
 }
 
 function create_board({ word, letters_guessed }) {
-  return [...word].map((char) =>
-    letters_guessed.includes(char) || char.match(/\p{P}|\p{White_Space}/gu)
-      ? char
+  return [...word].map((letter) =>
+    letters_guessed.some(
+      (l) => l === letter || l === letter.normalize('NFD')[0],
+    ) || letter.match(/\p{P}|\p{White_Space}/gu)
+      ? letter
       : '_',
   );
 }
