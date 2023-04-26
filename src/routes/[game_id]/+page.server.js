@@ -26,11 +26,12 @@ export const actions = {
 
     letters_guessed = [...letters_guessed, guess];
 
-    win = all_letters_guessed(word, letters_guessed)
-      ? true
-      : lives_remaining === 0
-      ? false
-      : null;
+    win =
+      all_letters_guessed(word, letters_guessed) && lives_remaining > 0
+        ? true
+        : lives_remaining <= 0
+        ? false
+        : null;
 
     const { error } = await supabase
       .from('hangman_games')
