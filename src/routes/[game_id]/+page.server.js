@@ -1,5 +1,5 @@
 import { error as sk_error } from '@sveltejs/kit';
-import { create_board, letter_in_word, game_won, game_lost } from '$lib';
+import { create_board, letter_in_word, game_won, game_lost } from '$lib/server';
 
 export async function load({ params: { game_id }, locals: { supabase } }) {
   const game = await get_game_from_db(supabase, game_id);

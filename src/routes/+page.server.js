@@ -1,5 +1,5 @@
 import { error as sk_error, redirect } from '@sveltejs/kit';
-import { random_word } from '$lib';
+import { random_word } from '$lib/server';
 
 export const actions = {
   default: async ({ locals: { supabase } }) => {
