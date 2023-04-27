@@ -12,10 +12,17 @@ export async function load({ params: { game_id }, locals: { supabase } }) {
 }
 
 export const actions = {
-  default: async ({ params: { game_id }, locals: { supabase }, request }) => {
+  default: async ({
+    params: { game_id },
+    cookies,
+    locals: { supabase },
+    request,
+  }) => {
+    const player_id = cookies.get('playerid');
     const game = await get_game_from_db(supabase, game_id);
-    let { word, lives_remaining, letters_guessed, win } = game;
+    let { word, lives_remaining, letters_guessed, win, player } = game;
 
+    if (player !== player_id) throw sk_error(403, 'Not your game');
     if (win !== null) throw sk_error(500, 'Game is over');
 
     const form_data = await request.formData();

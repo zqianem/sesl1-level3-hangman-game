@@ -2,11 +2,12 @@ import { error as sk_error, redirect } from '@sveltejs/kit';
 import { random_word } from '$lib/server';
 
 export const actions = {
-  default: async ({ locals: { supabase } }) => {
+  default: async ({ cookies, locals: { supabase } }) => {
+    const player = cookies.get('playerid');
     const word = random_word();
     const { data, error } = await supabase
       .from('hangman_games')
-      .insert({ word })
+      .insert({ word, player })
       .select()
       .maybeSingle();
 
