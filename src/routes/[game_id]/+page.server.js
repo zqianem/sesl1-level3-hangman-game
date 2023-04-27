@@ -32,7 +32,7 @@ export const actions = {
     if (win !== null) throw sk_error(500, 'Game is over');
 
     const form_data = await request.formData();
-    const guess = form_data.get('guess');
+    const guess = form_data.get('guess')?.normalize('NFC') ?? '';
 
     if (!is_letter(guess)) throw sk_error(422, 'Guess not a letter');
 

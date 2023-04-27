@@ -10,14 +10,14 @@ export function random_word() {
 export function create_board(word, letters_guessed) {
   return [...word].map((char) =>
     letters_guessed.some((letter) => letter_matches_char(letter, char)) ||
-    char.match(/\p{P}|\p{White_Space}/gu) // is punctuation or whitespace
+    !is_letter(char)
       ? char
       : '_',
   );
 }
 
 export function is_letter(string) {
-  return [...string].length === 1;
+  return string.match(/^\p{L}$/gu);
 }
 
 export function game_won(word, letters_guessed, lives_remaining) {
