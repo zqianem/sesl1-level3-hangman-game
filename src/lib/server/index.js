@@ -1,5 +1,5 @@
 import { americanAll, englishAll } from 'wordlist-js';
-import { letter_matches_char, is_punctuation_or_whitespace } from '$lib';
+import { letter_matches_char } from '$lib';
 
 const words = [...englishAll, ...americanAll].map((w) => w.normalize('NFC'));
 
@@ -10,7 +10,7 @@ export function random_word() {
 export function create_board(word, letters_guessed) {
   return [...word].map((char) =>
     letters_guessed.some((letter) => letter_matches_char(letter, char)) ||
-    is_punctuation_or_whitespace(char)
+    char.match(/\p{P}|\p{White_Space}/gu) // is punctuation or whitespace
       ? char
       : '_',
   );
