@@ -22,7 +22,7 @@ export const actions = {
     const game = await get_game_from_db(supabase, game_id);
     let { word, lives_remaining, letters_guessed, win, player } = game;
 
-    if (player !== player_id) throw sk_error(403, 'Not your game');
+    if (player && player !== player_id) throw sk_error(403, 'Not your game');
     if (win !== null) throw sk_error(500, 'Game is over');
 
     const form_data = await request.formData();
@@ -40,9 +40,11 @@ export const actions = {
       ? false
       : null;
 
+    player ??= player_id;
+
     const { error } = await supabase
       .from('hangman_games')
-      .update({ lives_remaining, letters_guessed, win })
+      .update({ lives_remaining, letters_guessed, win, player })
       .eq('id', game_id);
 
     if (error) throw sk_error(500, error);
