@@ -16,6 +16,10 @@ export function create_board(word, letters_guessed) {
   );
 }
 
+export function is_letter(string) {
+  return [...string].length === 1;
+}
+
 export function game_won(word, letters_guessed, lives_remaining) {
   return (
     create_board(word, letters_guessed).join('') === word && lives_remaining > 0
