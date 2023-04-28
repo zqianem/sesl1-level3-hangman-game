@@ -15,19 +15,19 @@
     </header>
     <ul>
       <li>
-        <a href="/">
+        <a href="/" data-sveltekit-reload>
           <NewIcon size={32} />
           new game
         </a>
       </li>
       <li>
-        <a href="/custom">
+        <a href="/custom" data-sveltekit-reload>
           <NewAltIcon size={32} />
           custom game
         </a>
       </li>
       <li>
-        <a href="/leaderboard">
+        <a href="/leaderboard" data-sveltekit-reload>
           <LeaderboardIcon size={32} />
           leaderboard
         </a>
