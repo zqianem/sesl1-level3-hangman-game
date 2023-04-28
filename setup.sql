@@ -18,3 +18,51 @@ create table
     constraint hangman_games_pkey primary key (id),
     constraint hangman_games_player_fkey foreign key (player) references hangman_players (id) on delete cascade
   ) tablespace pg_default;
+
+create view
+  public.hangman_wins as
+select
+  hangman_players.username,
+  count(*) as wins
+from
+  hangman_players
+  join hangman_games on hangman_players.id = hangman_games.player
+where
+  hangman_games.win = true
+group by
+  hangman_players.id
+order by
+  wins;
+
+create view
+  public.hangman_win_percentage as
+select
+  hangman_players.username,
+  avg(
+    case
+      when hangman_games.win = true then 100
+      else 0
+    end
+  ) as win_percentage
+from
+  hangman_players
+  join hangman_games on hangman_players.id = hangman_games.player
+group by
+  hangman_players.id
+having
+  count(*) > 5
+order by
+  win_percentage;
+
+create view
+  public.hangman_total as
+select
+  hangman_players.username,
+  count(*) as total
+from
+  hangman_players
+  join hangman_games on hangman_players.id = hangman_games.player
+group by
+  hangman_players.id
+order by
+  total;
