@@ -32,7 +32,7 @@ where
 group by
   hangman_players.id
 order by
-  wins;
+  wins desc;
 
 create view
   public.hangman_win_percentage as
@@ -52,7 +52,7 @@ group by
 having
   count(*) >= 5
 order by
-  win_percentage;
+  win_percentage desc;
 
 create view
   public.hangman_total as
@@ -65,4 +65,4 @@ from
 group by
   hangman_players.id
 order by
-  total;
+  total desc;
