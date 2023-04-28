@@ -87,7 +87,7 @@
     text-decoration: none;
   }
 
-  input:checked + label {
+  input:checked:not(:disabled) + label {
     background: #0a74d6;
     color: white;
   }

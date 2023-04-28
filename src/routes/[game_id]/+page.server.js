@@ -1,4 +1,4 @@
-import { error as sk_error } from '@sveltejs/kit';
+import { error as sk_error, redirect } from '@sveltejs/kit';
 import {
   create_board,
   is_letter,
@@ -29,7 +29,7 @@ export const actions = {
     let { word, lives_remaining, letters_guessed, win, player } = game;
 
     if (player && player !== player_id) throw sk_error(403, 'Not your game');
-    if (win !== null) throw sk_error(500, 'Game is over');
+    if (win !== null) throw redirect(303, game_id); // game is over, refresh
 
     const form_data = await request.formData();
     const guess = form_data.get('guess')?.normalize('NFC') ?? '';
