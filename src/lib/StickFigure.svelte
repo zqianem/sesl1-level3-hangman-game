@@ -18,7 +18,7 @@
 <style>
   img {
     flex: 1;
-    min-height: 0;
+    min-height: 100px;
     min-width: 0;
   }
 </style>

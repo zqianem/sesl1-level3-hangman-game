@@ -75,7 +75,7 @@
   nav {
     border-right: 1px solid grey;
     box-sizing: border-box;
-    min-width: 300px;
+    min-width: 280px;
     height: 100%;
     background: white;
     display: flex;
@@ -92,7 +92,7 @@
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     position: absolute;
-    transform: translate(300px, 30px);
+    transform: translate(280px, 30px);
     margin-left: -8px;
     cursor: pointer;
   }
@@ -102,13 +102,13 @@
   }
 
   nav.toggled {
-    margin-left: -300px;
+    margin-left: -280px;
   }
 
   @media (max-width: 900px) {
     nav {
       position: absolute;
-      margin-left: -300px;
+      margin-left: -280px;
     }
 
     nav.toggled {

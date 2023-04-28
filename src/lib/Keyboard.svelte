@@ -41,11 +41,17 @@
 
 <style>
   div.wrapper {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 8px 0;
     gap: 5px;
+    flex: 0 3 min-content;
+    min-height: calc(3 * 48px);
   }
 
   div.row {
@@ -53,6 +59,7 @@
     gap: 5px;
     width: 100%;
     justify-content: center;
+    flex: 0 1 72px;
   }
 
   div.dummy-half-key {
@@ -67,7 +74,6 @@
     display: flex;
     font-size: 22px;
     flex: 0 1 56px;
-    height: 72px;
     outline: 1px solid black;
     border-radius: 4px;
     cursor: pointer;

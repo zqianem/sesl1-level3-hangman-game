@@ -24,11 +24,9 @@
   <p>({board.length} letters)</p>
 </div>
 
-<div class="keyboard">
-  <form method="POST" id="letters">
-    <Keyboard {letters_guessed} {board} />
-  </form>
-</div>
+<form method="POST" id="letters">
+  <Keyboard {letters_guessed} {board} />
+</form>
 
 <div>
   {#if win === null}
@@ -52,24 +50,17 @@
     flex-direction: column;
     overflow-x: auto;
     border: none;
+    flex-shrink: 0;
   }
 
   div.board pre {
     font-size: 3em;
     margin: 0;
-    margin-top: 1.5em;
-  }
-
-  div.keyboard {
-    height: 270px;
-    border-top: 1px solid grey;
-    border-bottom: 1px solid grey;
+    margin-top: 0.5em;
   }
 
   form {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    display: contents;
   }
 
   div {
