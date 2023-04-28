@@ -15,7 +15,9 @@ create table
     win boolean null,
     letters_guessed array not null default '{}'::text[],
     player uuid null,
+    created_by uuid null,
     constraint hangman_games_pkey primary key (id),
+    constraint hangman_games_created_by_fkey foreign key (created_by) references hangman_players (id) on delete cascade,
     constraint hangman_games_player_fkey foreign key (player) references hangman_players (id) on delete cascade
   ) tablespace pg_default;
 
@@ -28,7 +30,7 @@ from
   hangman_players
   join hangman_games on hangman_players.id = hangman_games.player
 where
-  hangman_games.win = true
+  hangman_games.win = true and hangman_games.created_by is null
 group by
   hangman_players.id
 order by
@@ -47,6 +49,8 @@ select
 from
   hangman_players
   join hangman_games on hangman_players.id = hangman_games.player
+where
+  hangman_games.created_by is null
 group by
   hangman_players.id
 having
@@ -62,6 +66,8 @@ select
 from
   hangman_players
   join hangman_games on hangman_players.id = hangman_games.player
+where
+  hangman_games.created_by is null
 group by
   hangman_players.id
 order by

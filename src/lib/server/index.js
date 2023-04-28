@@ -7,6 +7,10 @@ export function random_word() {
   return words[Math.floor(Math.random() * words.length)];
 }
 
+export function in_word_list(string) {
+  return words.includes(string);
+}
+
 export function create_board(word, letters_guessed) {
   return [...word].map((char) =>
     letters_guessed.some((letter) => letter_matches_char(letter, char)) ||

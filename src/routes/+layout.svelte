@@ -177,6 +177,7 @@
     padding: 0 8px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     flex: auto;
     min-width: 0;
