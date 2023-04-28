@@ -72,14 +72,10 @@
     display: flex;
   }
 
-  div.wrapper > * {
-    min-width: 0;
-  }
-
   nav {
     border-right: 1px solid grey;
     box-sizing: border-box;
-    width: 300px;
+    min-width: 300px;
     height: 100%;
     background: white;
     display: flex;
@@ -183,5 +179,6 @@
     flex-direction: column;
     align-items: center;
     flex: auto;
+    min-width: 0;
   }
 </style>

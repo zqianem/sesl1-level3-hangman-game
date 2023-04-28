@@ -1,20 +1,23 @@
 <script>
   import BigButton from '$lib/BigButton.svelte';
   import Keyboard from '$lib/Keyboard.svelte';
+  import StickFigure from '$lib/StickFigure.svelte';
 
   export let data;
   $: ({ board, lives_remaining, letters_guessed, win, revealed_word } = data);
 </script>
 
-<aside>Lives remaining: <span>{lives_remaining}</span></aside>
-
-{#if win !== null}
-  {#if win}
+<div class="text">
+  {#if win === null}
+    You have {lives_remaining} mistakes remaining
+  {:else if win}
     You won!
   {:else}
     You lost. The word was: <span>{revealed_word}</span>
   {/if}
-{/if}
+</div>
+
+<StickFigure {lives_remaining} />
 
 <div class="board">
   <pre>{board.join(' ')}</pre>
@@ -38,8 +41,10 @@
 </div>
 
 <style>
-  aside {
-    align-self: flex-end;
+  div.text {
+    flex-direction: column;
+    height: 64px;
+    padding-top: 24px;
   }
 
   div.board {
@@ -57,6 +62,8 @@
 
   div.keyboard {
     height: 270px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
   }
 
   form {
@@ -70,11 +77,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid grey;
   }
 
   span {
     font-family: monospace;
     font-size: 1.5em;
+    margin-top: 0.5em;
   }
 </style>
