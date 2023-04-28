@@ -82,10 +82,10 @@
   nav button {
     border: none;
     background: white;
-    outline: 1px solid black;
+    outline: 1px solid grey;
     height: 48px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     position: absolute;
     transform: translate(300px, 30px);
     margin-left: -8px;
