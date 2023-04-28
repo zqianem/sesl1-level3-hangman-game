@@ -1,4 +1,6 @@
 <script>
+  import BigButton from '$lib/BigButton.svelte';
+
   export let data;
   $: ({ board, lives_remaining, letters_guessed, win, revealed_word } = data);
 </script>
@@ -30,10 +32,10 @@
 
 <div>
   {#if win === null}
-    <button form="letters">guess letter</button>
+    <BigButton form="letters">guess letter</BigButton>
   {:else}
     <form action="/" data-sveltekit-reload>
-      <button class="again">play again</button>
+      <BigButton color="green">play again</BigButton>
     </form>
   {/if}
 </div>
@@ -60,38 +62,5 @@
   span {
     font-family: monospace;
     font-size: 1.5em;
-  }
-
-  button {
-    appearance: none;
-    border: none;
-    background: #0a74d6;
-    color: white;
-    border-radius: 8px;
-    box-shadow: 0 12px #074c8d;
-    font-size: 28px;
-    margin: 16px 0 28px;
-    padding: 0.25em 2em;
-    width: 300px;
-  }
-
-  button.again {
-    background: #178724;
-    box-shadow: 0 12px #0c5517;
-  }
-
-  button:focus,
-  button:hover {
-    filter: brightness(1.1);
-    cursor: pointer;
-  }
-
-  button:active {
-    box-shadow: 0 4px #074c8d;
-    transform: translateY(8px);
-  }
-
-  button.again:active {
-    box-shadow: 0 4px #0c5517;
   }
 </style>
