@@ -1,12 +1,22 @@
 <script>
+  import { enhance } from '$app/forms';
   import BigButton from '$lib/BigButton.svelte';
   import Keyboard from '$lib/Keyboard.svelte';
   import StickFigure from '$lib/StickFigure.svelte';
+  import BigSpinner from '$lib/BigSpinner.svelte';
+  import { navigating } from '$app/stores';
 
   export let data;
   $: ({ board, lives_remaining, letters_guessed, win, revealed_word } = data);
   $: lives_plural = lives_remaining !== 1;
   $: letters_plural = board.length !== 1;
+
+  let loading;
+  $: data, (loading = false);
+
+  function handle_submit() {
+    loading = true;
+  }
 </script>
 
 <div class="text">
@@ -19,6 +29,7 @@
   {/if}
 </div>
 
+<BigSpinner loading={loading || $navigating} />
 <StickFigure {lives_remaining} />
 
 <div class="board">
@@ -26,7 +37,7 @@
   <p>({board.length} letter{letters_plural ? 's' : ''})</p>
 </div>
 
-<form method="POST" id="letters">
+<form method="POST" id="letters" use:enhance on:submit={handle_submit}>
   <Keyboard {letters_guessed} {board} />
 </form>
 
