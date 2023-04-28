@@ -1,11 +1,13 @@
 <script>
+  import { enhance } from '$app/forms';
   import { page } from '$app/stores';
+  import Spinner from '$lib/Spinner.svelte';
 
   export let form;
   $: ({ success, word, game_id } = form ?? {});
 
-  let game_url_element;
-  let clipboard_text = 'copy to clipboard';
+  let game_url_element, clipboard_text;
+  $: game_id, (clipboard_text = 'copy to clipboard');
 
   async function copy_game_url() {
     try {
@@ -15,12 +17,19 @@
     }
     clipboard_text = 'copied!';
   }
+
+  let loading;
+  $: form, (loading = false);
+
+  function handle_submit() {
+    loading = true;
+  }
 </script>
 
 <p>Want to challenge someone?</p>
 <p>Create a game with your own word and send them the link!</p>
 
-<form method="POST">
+<form method="POST" use:enhance on:submit={handle_submit}>
   <label>
     Enter a word:
     <input type="text" name="word" required />
@@ -31,7 +40,8 @@
 <p>(These games do not count towards the leaderboard.)</p>
 
 <div>
-  {#if form}
+  <Spinner {loading} />
+  {#if !loading && form}
     {#if form.success}
       <p>Success! Your game is at:</p>
       <p bind:this={game_url_element}>{new URL(game_id, $page.url.origin)}</p>
