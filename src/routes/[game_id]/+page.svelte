@@ -5,11 +5,12 @@
 
   export let data;
   $: ({ board, lives_remaining, letters_guessed, win, revealed_word } = data);
+  $: plural = lives_remaining !== 1;
 </script>
 
 <div class="text">
   {#if win === null}
-    You have {lives_remaining} mistakes remaining
+    You have {lives_remaining} mistake{plural ? 's' : ''} remaining
   {:else if win}
     You won!
   {:else}
