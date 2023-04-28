@@ -9,7 +9,7 @@ export async function load({ locals: { supabase } }) {
 }
 
 async function get_table(supabase, table) {
-  const { data, error } = await supabase.from(table).select().limit(10);
+  const { data, error } = await supabase.from(table).select().limit(5);
 
   if (error) throw sk_error(500, error);
 
