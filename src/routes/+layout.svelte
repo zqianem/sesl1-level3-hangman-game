@@ -112,6 +112,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
+    flex: auto;
   }
 </style>

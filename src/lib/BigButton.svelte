@@ -17,8 +17,8 @@
     box-shadow: 0 12px #074c8d;
     font-size: 28px;
     margin: 16px 0 28px;
-    padding: 0.25em 2em;
-    width: 300px;
+    padding: 0.25em 0;
+    flex: 0 1 300px;
   }
 
   button.green {

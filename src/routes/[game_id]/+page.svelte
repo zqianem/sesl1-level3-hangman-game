@@ -15,7 +15,7 @@
 <div class="keyboard">
   {#if win === null}
     <form method="POST" id="letters">
-      <Keyboard {letters_guessed} />
+      <Keyboard {letters_guessed} {board} />
     </form>
   {:else if win}
     You won!
@@ -46,12 +46,18 @@
 
   div.keyboard {
     height: 270px;
+    flex-direction: column;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   div {
     width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-top: 1px solid grey;
