@@ -9,7 +9,7 @@ export const actions = {
     const word = form_data.get('word')?.normalize('NFC') ?? '';
 
     if (!in_word_list(word)) {
-      return fail(400, { word });
+      return fail(400, { success: false, word });
     }
 
     const { data, error } = await supabase
@@ -19,5 +19,7 @@ export const actions = {
       .maybeSingle();
 
     if (error) throw sk_error(500, error);
+
+    return { success: true, game_id: data.id };
   },
 };
