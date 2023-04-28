@@ -23,7 +23,7 @@
 <form method="POST">
   <label>
     Enter a word:
-    <input type="text" name="word" />
+    <input type="text" name="word" required />
   </label>
   <button>Generate game</button>
 </form>

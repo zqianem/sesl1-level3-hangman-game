@@ -5,12 +5,13 @@
 
   export let data;
   $: ({ board, lives_remaining, letters_guessed, win, revealed_word } = data);
-  $: plural = lives_remaining !== 1;
+  $: lives_plural = lives_remaining !== 1;
+  $: letters_plural = board.length !== 1;
 </script>
 
 <div class="text">
   {#if win === null}
-    You have {lives_remaining} mistake{plural ? 's' : ''} remaining
+    You have {lives_remaining} mistake{lives_plural ? 's' : ''} remaining
   {:else if win}
     You won!
   {:else}
@@ -22,7 +23,7 @@
 
 <div class="board">
   <pre>{board.join(' ')}</pre>
-  <p>({board.length} letters)</p>
+  <p>({board.length} letter{letters_plural ? 's' : ''})</p>
 </div>
 
 <form method="POST" id="letters">
