@@ -3,12 +3,25 @@
   import NewAltIcon from 'carbon-icons-svelte/lib/Star.svelte';
   import LeaderboardIcon from 'carbon-icons-svelte/lib/SkillLevelAdvanced.svelte';
   import UserIcon from 'carbon-icons-svelte/lib/UserAvatar.svelte';
+  import LeftIcon from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
+  import RightIcon from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 
   export let data;
+
+  let toggled = false;
 </script>
 
 <div class="wrapper">
-  <nav>
+  <nav class:toggled>
+    <button on:click={() => (toggled = !toggled)}>
+      {#if toggled}
+        <RightIcon size={32} />
+        <LeftIcon size={32} />
+      {:else}
+        <LeftIcon size={32} />
+        <RightIcon size={32} />
+      {/if}
+    </button>
     <header>
       <h1>Hangman</h1>
       <p>a word guessing game</p>
@@ -56,10 +69,54 @@
 
   nav {
     border-right: 1px solid grey;
+    box-sizing: border-box;
     width: 300px;
+    height: 100%;
+    background: white;
     display: flex;
     flex-direction: column;
     padding: 0 8px;
+    z-index: 1;
+  }
+
+  nav button {
+    border: none;
+    background: white;
+    outline: 1px solid black;
+    height: 48px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    position: absolute;
+    transform: translate(300px, 30px);
+    margin-left: -8px;
+    cursor: pointer;
+  }
+
+  nav button > :global(:nth-child(2)) {
+    display: none;
+  }
+
+  nav.toggled {
+    margin-left: -300px;
+  }
+
+  @media (max-width: 900px) {
+    nav {
+      position: absolute;
+      margin-left: -300px;
+    }
+
+    nav.toggled {
+      margin-left: 0;
+    }
+
+    nav button > :global(:nth-child(1)) {
+      display: none;
+    }
+
+    nav button > :global(:nth-child(2)) {
+      display: block;
+    }
   }
 
   nav > * {
