@@ -12,7 +12,7 @@
 {board.join(' ')}
 </pre>
 
-<div style="height: 300px">
+<div class="keyboard">
   {#if win === null}
     <form method="POST" id="letters">
       <Keyboard {letters_guessed} />
@@ -42,6 +42,10 @@
   pre {
     font-size: 3em;
     margin-top: auto;
+  }
+
+  div.keyboard {
+    height: 270px;
   }
 
   div {

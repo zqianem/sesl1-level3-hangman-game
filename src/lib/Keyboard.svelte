@@ -23,11 +23,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 18px;
   }
 
   div.row {
     display: flex;
-    margin-bottom: 20px;
     gap: 10px;
   }
 
@@ -44,6 +44,15 @@
   label.disabled {
     background: gray;
     color: white;
+  }
+
+  label,
+  input {
+    cursor: pointer;
+  }
+
+  label.disabled,
+  input:disabled {
     cursor: default;
   }
 </style>
