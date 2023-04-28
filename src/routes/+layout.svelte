@@ -108,7 +108,7 @@
   }
 
   main {
-    padding: 1em;
+    padding: 0 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
