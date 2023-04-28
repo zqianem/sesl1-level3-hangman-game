@@ -4,7 +4,7 @@ import { random_word } from '$lib/server';
 export async function load({ cookies, locals: { supabase } }) {
   const player = cookies.get('playerid');
   const game =
-    (await get_unfinished_game(supabase, player)) ??
+    (player && (await get_unfinished_game(supabase, player))) ??
     (await create_new_game(supabase, player));
 
   throw redirect(303, game);
