@@ -1,9 +1,10 @@
 <script>
   export let form = null;
   export let color = 'blue';
+  export let disabled = false;
 </script>
 
-<button {form} class={color}>
+<button {form} class={color} {disabled}>
   <div>
     <slot />
   </div>

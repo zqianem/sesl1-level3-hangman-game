@@ -43,7 +43,7 @@
 
 <div>
   {#if win === null}
-    <BigButton form="letters">guess letter</BigButton>
+    <BigButton form="letters" disabled={loading}>guess letter</BigButton>
   {:else}
     <form action="/">
       <BigButton color="green">play again</BigButton>

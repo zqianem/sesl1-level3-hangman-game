@@ -34,6 +34,8 @@ export const actions = {
     const form_data = await request.formData();
     const guess = form_data.get('guess')?.normalize('NFC') ?? '';
 
+    // ignore empty or duplicate guesses
+    if (!guess || letters_guessed.includes(guess)) return;
     if (!is_letter(guess)) throw sk_error(422, 'Guess not a letter');
 
     lives_remaining = letter_in_word(guess, word)
