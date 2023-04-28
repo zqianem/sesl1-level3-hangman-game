@@ -8,20 +8,22 @@
 
 <aside>Lives remaining: <span>{lives_remaining}</span></aside>
 
+{#if win !== null}
+  {#if win}
+    You won!
+  {:else}
+    You lost. The word was: <span>{revealed_word}</span>
+  {/if}
+{/if}
+
 <pre>
 {board.join(' ')}
 </pre>
 
 <div class="keyboard">
-  {#if win === null}
-    <form method="POST" id="letters">
-      <Keyboard {letters_guessed} {board} />
-    </form>
-  {:else if win}
-    You won!
-  {:else}
-    You lost. The word was: <span>{revealed_word}</span>
-  {/if}
+  <form method="POST" id="letters">
+    <Keyboard {letters_guessed} {board} />
+  </form>
 </div>
 
 <div>
@@ -46,7 +48,6 @@
 
   div.keyboard {
     height: 270px;
-    flex-direction: column;
   }
 
   form {
