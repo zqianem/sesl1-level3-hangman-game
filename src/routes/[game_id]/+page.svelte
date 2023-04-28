@@ -1,5 +1,6 @@
 <script>
   import BigButton from '$lib/BigButton.svelte';
+  import Keyboard from '$lib/Keyboard.svelte';
 
   export let data;
   $: ({ board, lives_remaining, letters_guessed, win, revealed_word } = data);
@@ -11,24 +12,17 @@
 {board.join(' ')}
 </pre>
 
-{#if win === null}
-  <form method="POST" id="letters">
-    <label>
-      Pick a letter:
-      <select name="guess">
-        {#each [...'abcdefghijklmnopqrstuvwxyz'] as letter}
-          <option value={letter} disabled={letters_guessed.includes(letter)}>
-            {letter}
-          </option>
-        {/each}
-      </select>
-    </label>
-  </form>
-{:else if win}
-  You won!
-{:else}
-  You lost. The word was: <span>{revealed_word}</span>
-{/if}
+<div style="height: 300px">
+  {#if win === null}
+    <form method="POST" id="letters">
+      <Keyboard {letters_guessed} />
+    </form>
+  {:else if win}
+    You won!
+  {:else}
+    You lost. The word was: <span>{revealed_word}</span>
+  {/if}
+</div>
 
 <div>
   {#if win === null}
@@ -50,12 +44,12 @@
     margin-top: auto;
   }
 
-  form#letters,
   div {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border-top: 1px solid grey;
   }
 
