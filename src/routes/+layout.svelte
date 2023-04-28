@@ -50,6 +50,10 @@
     display: flex;
   }
 
+  div.wrapper > * {
+    min-width: 0;
+  }
+
   nav {
     border-right: 1px solid grey;
     width: 300px;

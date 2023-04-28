@@ -16,9 +16,10 @@
   {/if}
 {/if}
 
-<pre>
-{board.join(' ')}
-</pre>
+<div class="board">
+  <pre>{board.join(' ')}</pre>
+  <p>({board.length} letters)</p>
+</div>
 
 <div class="keyboard">
   <form method="POST" id="letters">
@@ -41,9 +42,17 @@
     align-self: flex-end;
   }
 
-  pre {
-    font-size: 3em;
+  div.board {
     margin-top: auto;
+    flex-direction: column;
+    overflow-x: auto;
+    border: none;
+  }
+
+  div.board pre {
+    font-size: 3em;
+    margin: 0;
+    margin-top: 1.5em;
   }
 
   div.keyboard {
