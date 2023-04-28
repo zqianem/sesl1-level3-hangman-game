@@ -1,6 +1,6 @@
 <script>
-  export let form;
-  export let color;
+  export let form = null;
+  export let color = 'blue';
 </script>
 
 <button {form} class={color}>
