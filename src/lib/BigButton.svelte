@@ -23,11 +23,14 @@
 
   button div {
     border-radius: 8px;
-    background: #0a74d6;
     color: white;
-    box-shadow: 0 12px #074c8d;
     font-size: 28px;
     padding: 0.25em 0;
+  }
+
+  button.blue div {
+    background: #0a74d6;
+    box-shadow: 0 12px #074c8d;
   }
 
   button.green div {
@@ -42,8 +45,11 @@
   }
 
   button:active div {
-    box-shadow: 0 4px #074c8d;
     transform: translateY(8px);
+  }
+
+  button.blue:active div {
+    box-shadow: 0 4px #074c8d;
   }
 
   button.green:active div {
