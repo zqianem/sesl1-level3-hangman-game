@@ -50,7 +50,7 @@ from
 group by
   hangman_players.id
 having
-  count(*) > 5
+  count(*) >= 5
 order by
   win_percentage;
 
