@@ -1,7 +1,9 @@
 import { americanAll, englishAll } from 'wordlist-js';
 import { letter_matches_char } from '$lib';
 
-const words = [...englishAll, ...americanAll].map((w) => w.normalize('NFC'));
+const words = [...englishAll, ...americanAll]
+  .map((w) => w.normalize('NFC'))
+  .filter((w) => w.length > 1);
 
 export function random_word() {
   return words[Math.floor(Math.random() * words.length)];
