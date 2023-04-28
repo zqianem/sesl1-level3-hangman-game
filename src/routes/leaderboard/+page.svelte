@@ -63,6 +63,12 @@
   th,
   td {
     border: 1px solid black;
+    text-align: center;
+  }
+
+  th {
+    background: black;
+    color: white;
   }
 
   th,
@@ -72,6 +78,5 @@
 
   td:nth-child(2) {
     width: 40%;
-    text-align: right;
   }
 </style>
