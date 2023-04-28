@@ -36,9 +36,7 @@
   {:else}
     You lost. The word was: <span>{revealed_word}</span>
   {/if}
-  <form method="POST" action="/">
-    <button>New game</button>
-  </form>
+  <p><a href="/">Play again</a></p>
 {/if}
 
 <style>
