@@ -33,7 +33,7 @@
   {#if win === null}
     <BigButton form="letters">guess letter</BigButton>
   {:else}
-    <form action="/" data-sveltekit-reload>
+    <form action="/">
       <BigButton color="green">play again</BigButton>
     </form>
   {/if}
