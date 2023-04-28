@@ -5,10 +5,16 @@
   import UserIcon from 'carbon-icons-svelte/lib/UserAvatar.svelte';
   import LeftIcon from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
   import RightIcon from 'carbon-icons-svelte/lib/ChevronRight.svelte';
+  import Spinner from '$lib/Spinner.svelte';
+  import { navigating } from '$app/stores';
 
   export let data;
 
   let toggled = false;
+  $: to = $navigating?.to.route.id;
+  $: loading_new_game = to === '/' || to === '/[game_id]';
+  $: loading_custom_game = to === '/custom';
+  $: loading_leaderboard = to === '/leaderboard';
 </script>
 
 <div class="wrapper">
@@ -28,21 +34,24 @@
     </header>
     <ul>
       <li>
-        <a href="/" data-sveltekit-reload>
+        <a href="/">
           <NewIcon size={32} />
           new game
+          <Spinner loading={loading_new_game} />
         </a>
       </li>
       <li>
-        <a href="/custom" data-sveltekit-reload>
+        <a href="/custom">
           <NewAltIcon size={32} />
           custom game
+          <Spinner loading={loading_custom_game} />
         </a>
       </li>
       <li>
-        <a href="/leaderboard" data-sveltekit-reload>
+        <a href="/leaderboard">
           <LeaderboardIcon size={32} />
           leaderboard
+          <Spinner loading={loading_leaderboard} />
         </a>
       </li>
     </ul>
